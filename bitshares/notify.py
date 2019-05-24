@@ -171,4 +171,5 @@ class Notify(Events, BlockchainInstance):
         """ This call initiates the listening/notification process. It
             behaves similar to ``run_forever()``.
         """
+        log.debug("INSIDE NOTIFY.LISTEN()")
         self.websocket.run_forever()
