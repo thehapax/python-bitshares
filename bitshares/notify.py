@@ -11,7 +11,7 @@ from .price import FilledOrder, Order, UpdateCallOrder
 
 
 log = logging.getLogger(__name__)
-# logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 
 
 class Notify(Events, BlockchainInstance):
@@ -99,6 +99,7 @@ class Notify(Events, BlockchainInstance):
 
     def get_market_ids(self, markets):
         # Markets
+        log.debug("NOTIFY: get_market_ids")
         market_ids = []
         for market_name in markets:
             market = Market(market_name, blockchain_instance=self.blockchain)
@@ -165,6 +166,7 @@ class Notify(Events, BlockchainInstance):
         """ This is used for processing of account Updates. It will
             return instances of :class:bitshares.account.AccountUpdate`
         """
+        log.debug("Process Account in NOTIFY")
         self.on_account(AccountUpdate(message, blockchain_instance=self.blockchain))
 
     def listen(self):
